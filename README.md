@@ -1,3 +1,0 @@
-# MyProjectNJUST
-# MyProjectNJUST
-# MyProjectNJUST
