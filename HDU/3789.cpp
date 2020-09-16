@@ -5,6 +5,7 @@ struct country
 {
     int location;
     int gold, medal, population;
+    //
     //    double pergold, permedal;
     int one, two, three, four;
     int ifjudge = 0;
