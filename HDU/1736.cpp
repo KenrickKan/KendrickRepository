@@ -13,38 +13,36 @@ int main()
         for (int i = 0; i < a.length(); i++)
         {
             if (a[i] == ',')
-                cout << "，";
+                a[i] = '，';
             else if (a[i] == '.')
-                cout << "。";
+                a[i] = '。';
             else if (a[i] == '!')
-                cout << "！";
+                a[i] = '！';
             else if (a[i] == '<' && a[i + 1] == '<')
             {
-                cout << "《";
+                a[i] = '《';
                 i++;
             }
             else if (a[i] == '>' && a[i + 1] == '>')
             {
-                cout << "》";
+                a[i] = '》';
                 i++;
             }
             else if (a[i] == '?')
-                cout << "？";
+                a[i] = '？';
             else if (a[i] == '"')
             {
                 if (judge == 1)
                 {
-                    cout << "“";
+                    a[i] = '“';
                     judge = 0;
                 }
                 else
                 {
-                    cout << "”";
+                    a[i] = '”';
                     judge = 1;
                 }
             }
-            else
-                cout << a[i];
             if (a[i] < 0 && a[i + 1] == -80)
             {
                 judge = 0;
@@ -54,7 +52,7 @@ int main()
                 judge = 1;
             }
         }
-        cout << endl;
+        cout << a << endl;
     }
 
     return 0;
