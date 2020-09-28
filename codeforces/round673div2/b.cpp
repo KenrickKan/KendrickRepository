@@ -1,85 +1,44 @@
-//ctrl alt i new-head
 #include <bits/stdc++.h>
-using namespace std;
+#define FastIO ios_base::sync_with_stdio(false), cin.tie(NULL), cout.tie(NULL)
 #define rep(i, a, b) for (int i = a; i < b; i++)
+#define repp(i, a, b) for (int i = a; i <= b; i++)
+#define rep1(i, a, b) for (int i = a; i >= b; i--)
 #define mem(a) memset(a, 0, sizeof(a))
+#define pb push_back
+#define mp make_pair
+#define fi first
+#define se second
+#define eps 1e-10
+#define mod 1e9 + 7
+using namespace std;
 typedef long long ll;
-struct knumber
-{
-    int num;
-    int worb;
-    int loc;
-};
-bool cmp(knumber a, knumber b)
-{
-    return a.num < b.num;
-}
-bool cmp1(knumber a, knumber b)
-{
-    return a.loc < b.loc;
-}
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+    FastIO;
     int t;
     cin >> t;
     while (t--)
     {
-        //knumber a[10005];
-        //mem(a);
-        vector<knumber> a;
         int n, k;
         cin >> n >> k;
+        int midnum = 0;
+        int x;
+        int y;
         rep(i, 0, n)
         {
-            knumber x;
-            cin >> x.num;
-            x.worb = 0;
-            x.loc = i;
-            a.push_back(x);
-        }
-        sort(a.begin(), a.end(), cmp);
-        int leftloc = 0, rightloc = n - 1;
-        int cnt = a[leftloc].num + 1;
-        int ifworb = 0;
-        while (leftloc < rightloc)
-        {
-            if ((a[leftloc].num + a[rightloc].num) != k)
+            cin >> x;
+            if (x == (k / 2) && k % 2 == 0)
             {
-                a[rightloc].worb = a[leftloc].worb;
-                if ((a[leftloc].num + a[rightloc].num) < k)
-                    leftloc++;
-                else
-                    rightloc--;
+                y = midnum % 2;
+                midnum++;
             }
+            else if (x * 2 < k)
+                y = 0;
             else
-            {
-                if ((a[rightloc].num + cnt) == k)
-                {
-                    if (ifworb == 1)
-                        a[rightloc].worb = 0;
-                    else
-                        a[rightloc].worb = 1;
-                    ifworb = a[rightloc].worb;
-                }
-                else
-                {
-                    if (a[leftloc].worb == 0)
-                        a[rightloc].worb = 1;
-                    else
-                        a[rightloc].worb = 0;
-                    cnt = a[rightloc].num;
-                    ifworb = a[rightloc].worb;
-                }
-                rightloc--;
-            }
-        }
-        sort(a.begin(), a.end(), cmp1);
-        rep(i, 0, n)
-        {
-            cout << a[i].worb << ' ';
+                y = 1;
+            cout << y << ' ';
         }
         cout << endl;
     }
