@@ -20,21 +20,36 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
+struct studentpeole
+{
+	string str = "";
+	int jishizuoweihao;
+	int kaoshizuoweihao;
+};
+bool cmp(studentpeole a, studentpeole b)
+{
+	return a.jishizuoweihao < b.jishizuoweihao;
+}
 int main()
 {
-	FastIO;
-	string str;
-	cin >> str;
-	int a[10];
-	mem(a);
-	rep(i, 0, str.length())
+	int n;
+	cin >> n;
+	vector<studentpeole> vec;
+	rep(i, 0, n)
 	{
-		a[str[i] - '0']++;
+		studentpeole x;
+		cin >> x.str;
+		cin >> x.jishizuoweihao >> x.kaoshizuoweihao;
+		vec.pb(x);
 	}
-	rep(i, 0, 10)
+	sort(vec.begin(), vec.end(), cmp);
+	int m;
+	cin >> m;
+	while (m--)
 	{
-		if (a[i] != 0)
-			cout << i << ':' << a[i] << endl;
+		int temp;
+		cin >> temp;
+		cout << vec[temp - 1].str << " " << vec[temp - 1].kaoshizuoweihao << endl;
 	}
 	return 0;
 }

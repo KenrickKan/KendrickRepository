@@ -19,6 +19,7 @@ typedef pair<ll, ll> pll;
 int main()
 {
     FastIO;
-    
+    string str;
+    cin >> str;
     return 0;
 }

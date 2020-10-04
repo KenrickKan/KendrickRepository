@@ -1,3 +1,9 @@
+/*
+ * @Author: KendrickKan 
+ * @Date: 2020-10-05 00:16:39 
+ * @Last Modified by:   KendrickKan 
+ * @Last Modified time: 2020-10-05 00:16:39 
+ */
 //ctrl alt i new-head
 #include <bits/stdc++.h>
 #define FastIO ios_base::sync_with_stdio(false), cin.tie(NULL), cout.tie(NULL)
@@ -19,6 +25,19 @@ typedef pair<ll, ll> pll;
 int main()
 {
     FastIO;
-    
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        ll a, b, c;
+        cin >> a >> b >> c;
+        ll x[3];
+        x[0] = a;
+        x[1] = b;
+        x[2] = c;
+        ll max = a + b + c;
+        sort(x, x + 3);
+        cout << max-1 << endl;
+    }
     return 0;
 }
