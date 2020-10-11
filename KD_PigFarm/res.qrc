@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Image/muchangbackgaound.jpg</file>
+        <file>Image/pigapp.jpg</file>
+        <file>Image/tiantianyangzhutiantiankaixin.png</file>
+        <file>Image/timg.jpg</file>
+        <file>Image/pigdongtu.gif</file>
+        <file>Image/BackButton.png</file>
+    </qresource>
+</RCC>

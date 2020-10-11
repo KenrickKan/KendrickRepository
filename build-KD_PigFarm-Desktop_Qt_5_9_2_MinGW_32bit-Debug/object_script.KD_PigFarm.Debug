@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\mainscene.o
+./debug\allpigfarmscene.o
+./debug\pighome.o
+./debug\aboutgamescene.o
+./debug\qrc_res.o
+./debug\moc_mainscene.o
+./debug\moc_allpigfarmscene.o
+./debug\moc_pighome.o
+./debug\moc_aboutgamescene.o
+);

@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\mainscene.o
+./release\allpigfarmscene.o
+./release\pighome.o
+./release\aboutgamescene.o
+./release\qrc_res.o
+./release\moc_mainscene.o
+./release\moc_allpigfarmscene.o
+./release\moc_pighome.o
+./release\moc_aboutgamescene.o
+);
