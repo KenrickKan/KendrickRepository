@@ -27,12 +27,18 @@ SOURCES += \
         main.cpp \
         mainscene.cpp \
     allpigfarmscene.cpp \
-    aboutgamescene.cpp
+    aboutgamescene.cpp \
+    onepighome.cpp \
+    kpig.cpp \
+    kglobal.cpp
 
 HEADERS += \
         mainscene.h \
     allpigfarmscene.h \
-    aboutgamescene.h
+    aboutgamescene.h \
+    onepighome.h \
+    kpig.h \
+    kglobal.h
 
 FORMS += \
         mainscene.ui
