@@ -22,7 +22,7 @@ public:
     kpig* BuyAPig();
 
     void paintEvent(QPaintEvent *event);
-    void sellallpihg();
+    void sellallpihg(int x);
     int onepighomeblackpignum();
     int onepighomewhitepignum();
     int onepighomecolorfulpignum();

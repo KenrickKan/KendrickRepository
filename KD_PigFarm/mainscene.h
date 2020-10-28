@@ -17,6 +17,7 @@ public:
 
     void paintEvent(QPaintEvent *event);
 
+
 private:
     Ui::MainScene *ui;
 };

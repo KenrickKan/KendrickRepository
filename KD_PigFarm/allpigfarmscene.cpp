@@ -135,12 +135,20 @@ allpigfarmscene::allpigfarmscene()
         });
 
 
+
         for( int i = 0 ; i < 100 ;i ++)
         {
             onepighome * newpighome =new onepighome;
             kpighome[i]=newpighome;
-        }
 
+
+            connect(DateTimer,&QTimer::timeout,[=](){
+                if(DateTime%90==0)//每九十天卖一批猪
+                {
+                    kpighome[i]->sellallpihg(i);
+                }
+            });
+        }
 
         for( int i = 0 ; i < 100 ;i ++)
         {

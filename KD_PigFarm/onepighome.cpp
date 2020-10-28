@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QTimer>
 #include <QDebug>
+#include <QFile>
 onepighome::onepighome()
 {
     this->kpighomepix.load(":/Image/pighome.png");
@@ -200,12 +201,12 @@ onepighome::onepighome()
 
 
 
-        connect(DateTimer,&QTimer::timeout,[=](){
-            if(DateTime%90==0)//每九十天卖一批猪
-            {
-                sellallpihg();
-            }
-        });
+//        connect(DateTimer,&QTimer::timeout,[=](){
+//            if(DateTime%90==0)//每九十天卖一批猪
+//            {
+//                sellallpihg();
+//            }
+//        });
 
 
     }
@@ -244,18 +245,38 @@ kpig* onepighome::BuyAPig()
     return newkpig;
 }
 
-void onepighome::sellallpihg()
+void onepighome::sellallpihg(int x)
 {
     for(int i=0;i<10;i++)
     {
-        if(((onepighomekpig[i]->weight>75)||(onepighomekpig[i]->day>365))&&this->ifinfected==false)//这个猪圈没有被感染然后就可以卖猪
+        if(((onepighomekpig[i]->weight>75)||(onepighomekpig[i]->day>365))&&onepighomekpig[i]->ifinfected==false)//这个猪圈没有被感染然后就可以卖猪
         {
+            int tempmoney;
             if(onepighomekpig[i]->pigtype==0)
-                AllMoney+=onepighomekpig[i]->weight*blackmoney;
+                tempmoney=onepighomekpig[i]->weight*blackmoney;
             else if(onepighomekpig[i]->pigtype==1)
-                AllMoney+=onepighomekpig[i]->weight*whitemoney;
+                tempmoney=onepighomekpig[i]->weight*whitemoney;
             else if(onepighomekpig[i]->pigtype==2)
-                AllMoney+=onepighomekpig[i]->weight*colorfulmoney;
+                tempmoney=onepighomekpig[i]->weight*colorfulmoney;
+
+            AllMoney+=tempmoney;
+
+            QFile kPigFarmSellFile("kPigFarmSellFile.txt");
+
+            QTextStream out(&kPigFarmSellFile);
+
+            kPigFarmSellFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append);
+            //kPigFarmSellFile.write();
+                out<<x<<endl;
+                out<<i<<endl;
+                out<<onepighomekpig[i]->weight<<endl;
+                out<<onepighomekpig[i]->day<<endl;
+                out<<onepighomekpig[i]->pigtype<<endl;
+                out<<tempmoney<<endl;
+            kPigFarmSellFile.close();
+
+
+
             delete onepighomekpig[i];
             //先卖再买  上面是卖  下面是买
             onepighomekpig[i]=BuyAPig();

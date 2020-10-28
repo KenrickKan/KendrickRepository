@@ -81,17 +81,36 @@ MainScene::MainScene(QWidget *parent) :
 
 
     allpigfarmscene * kallpigfarmscene = new allpigfarmscene();
+    connect(kallpigfarmscene,&allpigfarmscene::Backtomainscene,[=](){
+
+        kallpigfarmscene->hide(); //将选择关卡场景 隐藏掉
+        this->show(); //重新显示主场景
+
+    });
 
     connect(newgame,&QPushButton::clicked,[=](){
 
 
-//        for(int i=0;i<100;i++)
-//        {
-//            for(int j=0;j<10;j++)
-//            {
-//                kallpigfarmscene->kpighome[i]->onepighomekpig[j]=new kpig;
-//            }
-//        }
+        //清空出售记录
+        QFile kPigFarmSellFile("kPigFarmSellFile.txt");
+
+        QTextStream out(&kPigFarmSellFile);
+
+        kPigFarmSellFile.open(QIODevice::WriteOnly | QIODevice::Text  );
+        //kPigFarmSellFile.write();
+            out<<"";
+        kPigFarmSellFile.close();
+
+
+
+        for(int i=0;i<100;i++)
+        {
+            //for(int j=0;j<10;j++)
+           // {
+                onepighome * temp= new onepighome ;
+                kallpigfarmscene->kpighome[i]=temp;
+            //}
+        }
         //kallpigfarmscene->clearpighouse();
 
         DateTime = 0;
@@ -108,12 +127,12 @@ MainScene::MainScene(QWidget *parent) :
 
         this->hide();
 
-        connect(kallpigfarmscene,&allpigfarmscene::Backtomainscene,[=](){
+//        connect(kallpigfarmscene,&allpigfarmscene::Backtomainscene,[=](){
 
-            kallpigfarmscene->hide(); //将选择关卡场景 隐藏掉
-            this->show(); //重新显示主场景
+//            kallpigfarmscene->hide(); //将选择关卡场景 隐藏掉
+//            this->show(); //重新显示主场景
 
-        });//点击back 返回主场景
+//        });//点击back 返回主场景
 
     });
 
@@ -180,12 +199,12 @@ MainScene::MainScene(QWidget *parent) :
         kallpigfarmscene->show();
         this->hide();
 
-        connect(kallpigfarmscene,&allpigfarmscene::Backtomainscene,[=](){
+//        connect(kallpigfarmscene,&allpigfarmscene::Backtomainscene,[=](){
 
-            kallpigfarmscene->hide(); //将选择关卡场景 隐藏掉
-            this->show(); //重新显示主场景
+//            kallpigfarmscene->hide(); //将选择关卡场景 隐藏掉
+//            this->show(); //重新显示主场景
 
-        });//点击back 返回主场景
+//        });//点击back 返回主场景
 
 
     });
