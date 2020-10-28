@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include "onepighome.h"
+#include "searchselllog.h"
 
 class allpigfarmscene : public QMainWindow
 {
@@ -14,6 +15,7 @@ public:
     void paintEvent(QPaintEvent *event);
 
     onepighome* kpighome [100];//初始化100个猪圈
+    searchselllog * ksearchselllog;
 
     bool ifallpighomeinfected();
     void onpighomeinfectneiboronepighome(int num);//相邻猪圈比会被传染

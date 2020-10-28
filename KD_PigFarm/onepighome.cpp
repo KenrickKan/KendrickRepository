@@ -87,7 +87,25 @@ onepighome::onepighome()
 
     for(int i=0;i<10;i++)
     {
-        onepighomekpig[i]=onepighome::BuyAPig();//买猪
+        if(i==0)
+        {
+            onepighomekpig[i]=onepighome::BuyAPig(0);//买猪
+            if(onepighomekpig[i]->pigtype==0)
+                ifhaveblackpig=true;
+            else
+                ifhaveblackpig=false;
+        }
+        else
+        {
+            if(onepighomekpig[0]->pigtype==0)
+            {
+                onepighomekpig[i]=onepighome::BuyAPig(1);
+            }
+            else
+            {
+                onepighomekpig[i]=onepighome::BuyAPig(2);
+            }
+        }
         if(onepighomekpig[i]->pigtype==0)
             blackpignum++;
         else if(onepighomekpig[i]->pigtype==1)
@@ -239,10 +257,18 @@ onepighome::onepighome()
 
 
 }
-kpig* onepighome::BuyAPig()
+kpig* onepighome::BuyAPig(int x)
 {
-    kpig * newkpig=new kpig;
-    return newkpig;
+    if(x==0)
+    {
+        kpig * newkpig=new kpig;
+        return newkpig;
+    }
+    else
+    {
+        kpig * newkpig=new kpig(x);
+        return newkpig;
+    }
 }
 
 void onepighome::sellallpihg(int x)
@@ -266,20 +292,25 @@ void onepighome::sellallpihg(int x)
             QTextStream out(&kPigFarmSellFile);
 
             kPigFarmSellFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append);
-            //kPigFarmSellFile.write();
-                out<<x<<endl;
-                out<<i<<endl;
-                out<<onepighomekpig[i]->weight<<endl;
-                out<<onepighomekpig[i]->day<<endl;
-                out<<onepighomekpig[i]->pigtype<<endl;
-                out<<tempmoney<<endl;
+                out<<"The "<<x<<"th pifhome! "<<"The "<<i<<"th pig! ";
+                out<<"Weight: "<<onepighomekpig[i]->weight<<"  Day: "<<onepighomekpig[i]->day<<"  Type: ";
+                if(onepighomekpig[i]->pigtype==0)
+                    out<<"Black";
+                else if(onepighomekpig[i]->pigtype==1)
+                    out<<"White";
+                else
+                    out<<"Colorful";
+                out<<" Value: "<<tempmoney<<endl;
             kPigFarmSellFile.close();
 
 
 
             delete onepighomekpig[i];
             //先卖再买  上面是卖  下面是买
-            onepighomekpig[i]=BuyAPig();
+            if(this->ifhaveblackpig==true)
+                onepighomekpig[i]=BuyAPig(1);
+            else
+                onepighomekpig[i]=BuyAPig(2);
             if(onepighomekpig[i]->pigtype==0)
                 AllMoney-=blackmoney*20;
             else if(onepighomekpig[i]->pigtype==1)

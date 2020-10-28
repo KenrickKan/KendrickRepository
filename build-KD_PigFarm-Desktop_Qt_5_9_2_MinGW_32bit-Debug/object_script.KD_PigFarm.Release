@@ -6,10 +6,12 @@ INPUT(
 ./release\onepighome.o
 ./release\kpig.o
 ./release\kglobal.o
+./release\searchselllog.o
 ./release\qrc_res.o
 ./release\moc_mainscene.o
 ./release\moc_allpigfarmscene.o
 ./release\moc_aboutgamescene.o
 ./release\moc_onepighome.o
 ./release\moc_kpig.o
+./release\moc_searchselllog.o
 );

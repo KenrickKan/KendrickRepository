@@ -192,6 +192,14 @@ MainScene::MainScene(QWidget *parent) :
         kPigFarmFile.close();
         DateTimer->start(1000);
 
+        for(int i=0;i<100;i++)
+        {
+            if(kallpigfarmscene->kpighome[i]->onepighomekpig[0]->pigtype==0)
+                kallpigfarmscene->kpighome[i]->ifhaveblackpig=true;
+            else
+                kallpigfarmscene->kpighome[i]->ifhaveblackpig=false;
+        }
+
         // qDebug()<<neworopenfile;
         qDebug()<<"choose open";
 

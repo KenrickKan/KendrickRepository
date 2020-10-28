@@ -1,6 +1,7 @@
 #include "allpigfarmscene.h"
 #include "kglobal.h"
 #include "kpig.h"
+#include "searchselllog.h"
 #include <QPainter>
 #include <QPushButton>
 #include "onepighome.h"
@@ -230,6 +231,25 @@ allpigfarmscene::allpigfarmscene()
 
 
 
+    ksearchselllog=new searchselllog;
+
+    QPushButton * showbutton = new QPushButton;///////////开始按钮
+    showbutton->setStyleSheet("QPushButton{border:0px;}");
+    QPixmap shownpix;
+    shownpix.load(":/Image/showbutton.JPG");
+    showbutton->setIcon(shownpix);
+    showbutton->setIconSize(QSize(backpix.width(),backpix.height()));
+    showbutton->setFixedSize(backpix.width(),backpix.height());
+    showbutton->setParent(this);
+    showbutton->move(this->width() - showbutton->width()-240 , this->height() - showbutton->height());
+
+    connect(showbutton,&QPushButton::clicked,[=](){
+
+        ksearchselllog->show();
+
+    });
+
+
 }
 
 
@@ -311,6 +331,9 @@ void allpigfarmscene::bianlionepighomeinfect()
         }
     }
 }
+
+
+//void contralpigfarm
 
 
 

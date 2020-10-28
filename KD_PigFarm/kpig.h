@@ -8,6 +8,7 @@ class kpig : public QWidget
     Q_OBJECT
 public:
     explicit kpig(QWidget *parent = nullptr);
+    kpig(int x);
 
     double weight;
     int day;

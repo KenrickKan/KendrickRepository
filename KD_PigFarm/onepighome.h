@@ -14,15 +14,16 @@ public:
     int whitepignum;
     int colorfulpignum;
     bool ifinfected;
+    bool ifhaveblackpig;
     QPixmap kpighomepix;
 
     kpig* onepighomekpig[10];
     QPushButton * onepighomekpigpushbutton[10];
 
-    kpig* BuyAPig();
+    kpig* BuyAPig(int x);
 
     void paintEvent(QPaintEvent *event);
-    void sellallpihg(int x);
+    void sellallpihg(int x);//传进来的参数代表的是哪一个onepighome 便于存档
     int onepighomeblackpignum();
     int onepighomewhitepignum();
     int onepighomecolorfulpignum();

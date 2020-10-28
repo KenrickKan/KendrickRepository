@@ -6,10 +6,12 @@ INPUT(
 ./debug\onepighome.o
 ./debug\kpig.o
 ./debug\kglobal.o
+./debug\searchselllog.o
 ./debug\qrc_res.o
 ./debug\moc_mainscene.o
 ./debug\moc_allpigfarmscene.o
 ./debug\moc_aboutgamescene.o
 ./debug\moc_onepighome.o
 ./debug\moc_kpig.o
+./debug\moc_searchselllog.o
 );
