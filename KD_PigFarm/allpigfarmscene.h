@@ -18,9 +18,11 @@ public:
     searchselllog * ksearchselllog;
 
     bool ifallpighomeinfected();
+    bool ifinfected;
     void onpighomeinfectneiboronepighome(int num);//相邻猪圈比会被传染
     void bianlionepighomeinfect();
     void clearpighouse();
+    bool ifinfectedfunction();
 
 
 signals:

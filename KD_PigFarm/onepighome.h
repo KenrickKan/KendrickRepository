@@ -35,6 +35,7 @@ public:
     void begininfectonepighome();//在同一个猪圈里以50%的概率感染每一头猪；
     bool ifallinfected();
     bool ifpartinfected();
+    void refreshnoinfected();//刷新没有被感染 图标
 
 signals:
 

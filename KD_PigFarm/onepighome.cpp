@@ -414,9 +414,19 @@ bool onepighome::ifpartinfected()
         this->kpighomepix.load(":/Image/partinfected.png");
         return true;
     }
-    else
+    {
         return false;
+    }
 }
+
+void onepighome::refreshnoinfected()
+{
+    if(this->ifinfected==false)
+    {
+        this->kpighomepix.load(":/Image/pighome.png");
+    }
+}
+
 
 
 

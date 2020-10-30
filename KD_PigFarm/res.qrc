@@ -19,5 +19,6 @@
         <file>Image/allinfected.png</file>
         <file>Image/partinfected.png</file>
         <file>Image/showbutton.JPG</file>
+        <file>Image/controlbutton.JPG</file>
     </qresource>
 </RCC>

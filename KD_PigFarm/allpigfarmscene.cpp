@@ -11,8 +11,11 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QTextStream>
+#include <QPalette>
 allpigfarmscene::allpigfarmscene()
 {
+
+        this->ifinfected=false;//初始化整个猪场并没有被感染
         setFixedSize(600,950);//设置固定大小
 
         setWindowIcon(QIcon(":/Image/pigtouming.png"));//设置图标
@@ -124,8 +127,95 @@ allpigfarmscene::allpigfarmscene()
             AllMoneyLabel->setText(QString("Money:%1").arg(AllMoney));//每秒增加10天
         });
 
-
         connect(DateTimer,&QTimer::timeout,[=](){
+            if(this->ifinfectedfunction()==true)
+                this->ifinfected=true;
+            else
+                this->ifinfected=false;
+        });//判断整个猪场是否有猪被感染
+
+        QLabel * InfectedInfoLabel = new QLabel;//感染提示label
+        InfectedInfoLabel->setParent(this);
+        QFont kfont_about_InfectedInfoLabelLabel;
+        kfont_about_InfectedInfoLabelLabel.setFamily("Consolas");//设置字体
+        kfont_about_InfectedInfoLabelLabel.setPointSize(15);
+        InfectedInfoLabel->setFont(kfont_about_InfectedInfoLabelLabel);
+        QPalette QPalettet_about_InfectedInfoLabelLabel;
+        QPalettet_about_InfectedInfoLabelLabel.setColor(QPalette::WindowText,Qt::red);
+        InfectedInfoLabel->setPalette(QPalettet_about_InfectedInfoLabelLabel);//set color
+        InfectedInfoLabel->move(0,-80);
+        connect(DateTimer,&QTimer::timeout,[=](){
+            if(this->ifinfected==true&&this->ifallpighomeinfected()==false)
+                InfectedInfoLabel->setText(QString("WARNING!!!\nYOUR PIGFARM IS INFECTED!!!\nPLEASE PRESS THE CONTROL BUTTON TO CONTROL IT"));
+            else if(this->ifinfected==false)
+                InfectedInfoLabel->setText("");
+
+        });
+
+
+
+        QLabel * AllInfectedInfoLabel = new QLabel;//感染完全提示label
+        AllInfectedInfoLabel->setParent(this);
+        QFont kfont_about_AllInfectedInfoLabelLabel;
+        kfont_about_AllInfectedInfoLabelLabel.setFamily("Consolas");//设置字体
+        kfont_about_AllInfectedInfoLabelLabel.setPointSize(27);
+        AllInfectedInfoLabel->setFont(kfont_about_AllInfectedInfoLabelLabel);
+        QPalette QPalette_about_AllInfectedInfoLabelLabel;
+        QPalette_about_AllInfectedInfoLabelLabel.setColor(QPalette::WindowText,Qt::red);
+        AllInfectedInfoLabel->setPalette(QPalette_about_AllInfectedInfoLabelLabel);//set color
+        AllInfectedInfoLabel->move(0,-80);
+        connect(DateTimer,&QTimer::timeout,[=](){
+            if(this->ifallpighomeinfected()==true)
+            {
+                overinfectday=DateTime;
+                qDebug()<<overinfectday;
+                DateTimer->stop();
+                InfectedInfoLabel->setText("");
+                AllInfectedInfoLabel->setText(QString("ALL PIG ARE INFECTED\nFARM DAY %1 TO %2\nGAME OVER!").arg(begininfectday).arg(overinfectday));
+            }
+        });
+
+
+        QPushButton * controlbutton = new QPushButton;//////////control button
+        controlbutton->setStyleSheet("QPushButton{border:0px;}");
+        QPixmap controlepix;
+        controlepix.load(":/Image/controlbutton.JPG");
+        controlbutton->setIcon(controlepix);
+        controlbutton->setIconSize(QSize(backpix.width(),backpix.height()));
+        controlbutton->setFixedSize(backpix.width(),backpix.height());
+        controlbutton->setParent(this);
+        controlbutton->move(this->width() - pausebutton->width()-320 , this->height() - pausebutton->height());
+
+        connect(controlbutton,&QPushButton::clicked,[=](){
+
+            for(int i=0;i<100;i++)
+            {
+                kpighome[i]->ifinfected=false;
+                for(int j=0;j<10;j++)
+                {
+                    if(kpighome[i]->onepighomekpig[j]->ifinfected==true)
+                    {
+                        kpig * tempdeletepig=kpighome[i]->onepighomekpig[j];
+                        if(kpighome[i]->ifhaveblackpig==true)
+                        {
+                            kpighome[i]->onepighomekpig[j]=new kpig(1);
+                        }
+                        else
+                        {
+                            kpighome[i]->onepighomekpig[j]=new kpig(2);
+                        }
+                        delete tempdeletepig;
+                    }
+                }
+            }//点击控制按钮 出售猪场里所有被感染的猪
+
+            //DateTimer->stop();
+
+        });
+
+
+
+        /*connect(DateTimer,&QTimer::timeout,[=](){
             if(ifallpighomeinfected()==true)
             {
                 overinfectday=DateTime;
@@ -133,7 +223,7 @@ allpigfarmscene::allpigfarmscene()
                 DateTimer->stop();
                 QMessageBox::information(this,"info",QString("从第%1天开始感染，在第%2天整个猪场全部被感染").arg(begininfectday).arg(overinfectday));
             }
-        });
+        });*///旧的是否全部感染 有bug 舍弃 用上面那个
 
 
 
@@ -218,6 +308,7 @@ allpigfarmscene::allpigfarmscene()
             connect(DateTimer,&QTimer::timeout,[=](){
                 kpighome[i]->ifallinfected();
                 kpighome[i]->ifpartinfected();
+                kpighome[i]->refreshnoinfected();
             });
 
 
@@ -233,7 +324,7 @@ allpigfarmscene::allpigfarmscene()
 
     ksearchselllog=new searchselllog;
 
-    QPushButton * showbutton = new QPushButton;///////////开始按钮
+    QPushButton * showbutton = new QPushButton;///////////show按钮
     showbutton->setStyleSheet("QPushButton{border:0px;}");
     QPixmap shownpix;
     shownpix.load(":/Image/showbutton.JPG");
@@ -331,6 +422,18 @@ void allpigfarmscene::bianlionepighomeinfect()
         }
     }
 }
+
+
+bool allpigfarmscene::ifinfectedfunction()
+{
+    for(int i=0;i<100;i++)
+    {
+        if(kpighome[i]->ifinfected==true)
+            return true;
+    }
+    return false;
+}
+
 
 
 //void contralpigfarm
