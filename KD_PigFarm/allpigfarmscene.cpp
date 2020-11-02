@@ -2,6 +2,7 @@
 #include "kglobal.h"
 #include "kpig.h"
 #include "searchselllog.h"
+#include "searchbuylog.h"
 #include <QPainter>
 #include <QPushButton>
 #include "onepighome.h"
@@ -184,7 +185,7 @@ allpigfarmscene::allpigfarmscene()
         controlbutton->setIconSize(QSize(backpix.width(),backpix.height()));
         controlbutton->setFixedSize(backpix.width(),backpix.height());
         controlbutton->setParent(this);
-        controlbutton->move(this->width() - pausebutton->width()-320 , this->height() - pausebutton->height());
+        controlbutton->move(this->width() - pausebutton->width()-400 , this->height() - pausebutton->height());
 
         connect(controlbutton,&QPushButton::clicked,[=](){
 
@@ -324,19 +325,38 @@ allpigfarmscene::allpigfarmscene()
 
     ksearchselllog=new searchselllog;
 
-    QPushButton * showbutton = new QPushButton;///////////show按钮
-    showbutton->setStyleSheet("QPushButton{border:0px;}");
-    QPixmap shownpix;
-    shownpix.load(":/Image/showbutton.JPG");
-    showbutton->setIcon(shownpix);
-    showbutton->setIconSize(QSize(backpix.width(),backpix.height()));
-    showbutton->setFixedSize(backpix.width(),backpix.height());
-    showbutton->setParent(this);
-    showbutton->move(this->width() - showbutton->width()-240 , this->height() - showbutton->height());
+    QPushButton * sellbutton = new QPushButton;///////////show按钮
+    sellbutton->setStyleSheet("QPushButton{border:0px;}");
+    QPixmap sellpix;
+    sellpix.load(":/Image/selllogbutton.JPG");
+    sellbutton->setIcon(sellpix);
+    sellbutton->setIconSize(QSize(backpix.width(),backpix.height()));
+    sellbutton->setFixedSize(backpix.width(),backpix.height());
+    sellbutton->setParent(this);
+    sellbutton->move(this->width() - sellbutton->width()-240 , this->height() - sellbutton->height());
 
-    connect(showbutton,&QPushButton::clicked,[=](){
+    connect(sellbutton,&QPushButton::clicked,[=](){
 
         ksearchselllog->show();
+
+    });
+
+
+    ksearchbuylog=new searchbuylog;
+
+    QPushButton * buybutton = new QPushButton;///////////show按钮
+    buybutton->setStyleSheet("QPushButton{border:0px;}");
+    QPixmap buypix;
+    buypix.load(":/Image/buylogbutton.JPG");
+    buybutton->setIcon(buypix);
+    buybutton->setIconSize(QSize(backpix.width(),backpix.height()));
+    buybutton->setFixedSize(backpix.width(),backpix.height());
+    buybutton->setParent(this);
+    buybutton->move(this->width() - buybutton->width()-320 , this->height() - buybutton->height());
+
+    connect(buybutton,&QPushButton::clicked,[=](){
+
+        ksearchbuylog->show();
 
     });
 
@@ -354,6 +374,21 @@ void allpigfarmscene::clearpighouse()
             kpig * temppig= kpighome[i]->onepighomekpig[j];
             delete temppig;
             kpighome[i]->onepighomekpig[j]=new kpig;
+            QFile kPigFarmBuyFile("kPigFarmBuyFile.txt");
+
+            QTextStream out(&kPigFarmBuyFile);
+
+            kPigFarmBuyFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append);
+                out<<"The "<<i<<"th pighome! On Day: "<<DateTime<<"Buy The "<<j<<"th pig! ";
+                out<<"Weight: "<<kpighome[i]->onepighomekpig[j]->weight<<"  Type: ";
+                if(kpighome[i]->onepighomekpig[j]->pigtype==0)
+                    out<<"Black";
+                else if(kpighome[i]->onepighomekpig[j]->pigtype==1)
+                    out<<"White";
+                else
+                    out<<"Colorful";
+                out<<endl;
+            kPigFarmBuyFile.close();
         }
     }
 }

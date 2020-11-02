@@ -20,5 +20,7 @@
         <file>Image/partinfected.png</file>
         <file>Image/showbutton.JPG</file>
         <file>Image/controlbutton.JPG</file>
+        <file>Image/selllogbutton.JPG</file>
+        <file>Image/buylogbutton.JPG</file>
     </qresource>
 </RCC>

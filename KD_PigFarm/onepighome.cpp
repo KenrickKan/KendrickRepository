@@ -292,7 +292,7 @@ void onepighome::sellallpihg(int x)
             QTextStream out(&kPigFarmSellFile);
 
             kPigFarmSellFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append);
-                out<<"The "<<x<<"th pifhome! "<<"The "<<i<<"th pig! ";
+                out<<"The "<<x<<"th pighome! "<<"The "<<i<<"th pig! ";
                 out<<"Weight: "<<onepighomekpig[i]->weight<<"  Day: "<<onepighomekpig[i]->day<<"  Type: ";
                 if(onepighomekpig[i]->pigtype==0)
                     out<<"Black";
@@ -317,6 +317,23 @@ void onepighome::sellallpihg(int x)
                 AllMoney-=whitemoney*20;
             else if(onepighomekpig[i]->pigtype==2)
                 AllMoney-=colorfulmoney*20;
+
+            QFile kPigFarmBuyFile("kPigFarmBuyFile.txt");
+
+            QTextStream out2(&kPigFarmBuyFile);
+
+            kPigFarmBuyFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append);
+                out2<<"The "<<x<<"th pighome! On Day: "<<DateTime<<"Buy The "<<i<<"th pig! ";
+                out2<<"Weight: "<<onepighomekpig[i]->weight<<"  Type: ";
+                if(onepighomekpig[i]->pigtype==0)
+                    out2<<"Black";
+                else if(onepighomekpig[i]->pigtype==1)
+                    out2<<"White";
+                else
+                    out2<<"Colorful";
+                out2<<endl;
+            kPigFarmBuyFile.close();
+
         }
     }
 }

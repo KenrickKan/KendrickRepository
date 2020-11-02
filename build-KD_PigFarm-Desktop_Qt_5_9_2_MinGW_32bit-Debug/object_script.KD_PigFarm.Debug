@@ -7,6 +7,7 @@ INPUT(
 ./debug\kpig.o
 ./debug\kglobal.o
 ./debug\searchselllog.o
+./debug\searchbuylog.o
 ./debug\qrc_res.o
 ./debug\moc_mainscene.o
 ./debug\moc_allpigfarmscene.o
@@ -14,4 +15,5 @@ INPUT(
 ./debug\moc_onepighome.o
 ./debug\moc_kpig.o
 ./debug\moc_searchselllog.o
+./debug\moc_searchbuylog.o
 );

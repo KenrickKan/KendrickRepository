@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include "onepighome.h"
 #include "searchselllog.h"
+#include "searchbuylog.h"
 
 class allpigfarmscene : public QMainWindow
 {
@@ -16,6 +17,7 @@ public:
 
     onepighome* kpighome [100];//初始化100个猪圈
     searchselllog * ksearchselllog;
+    searchbuylog * ksearchbuylog;
 
     bool ifallpighomeinfected();
     bool ifinfected;

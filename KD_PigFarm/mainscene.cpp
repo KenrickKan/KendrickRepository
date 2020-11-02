@@ -101,6 +101,16 @@ MainScene::MainScene(QWidget *parent) :
             out<<"";
         kPigFarmSellFile.close();
 
+        //清空购买记录
+        QFile kPigFarmBuyFile("kPigFarmBuyFile.txt");
+
+        QTextStream out2(&kPigFarmBuyFile);
+
+        kPigFarmBuyFile.open(QIODevice::WriteOnly | QIODevice::Text  );
+        //kPigFarmSellFile.write();
+            out2<<"";
+        kPigFarmBuyFile.close();
+
 
 
         for(int i=0;i<100;i++)

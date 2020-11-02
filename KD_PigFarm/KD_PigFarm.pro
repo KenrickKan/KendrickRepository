@@ -31,7 +31,8 @@ SOURCES += \
     onepighome.cpp \
     kpig.cpp \
     kglobal.cpp \
-    searchselllog.cpp
+    searchselllog.cpp \
+    searchbuylog.cpp
 
 HEADERS += \
         mainscene.h \
@@ -40,11 +41,13 @@ HEADERS += \
     onepighome.h \
     kpig.h \
     kglobal.h \
-    searchselllog.h
+    searchselllog.h \
+    searchbuylog.h
 
 FORMS += \
         mainscene.ui \
-    searchselllog.ui
+    searchselllog.ui \
+    searchbuylog.ui
 
 RESOURCES += \
     res.qrc
