@@ -158,3 +158,7 @@ SnakeWidget::~SnakeWidget()
 {
 
 }
+void SnakeWidget::closeEvent(QCloseEvent *event)
+{
+    emit this->Backtomainscene();
+}

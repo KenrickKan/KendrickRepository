@@ -4,6 +4,7 @@
 #include"snake.h"
 #include <QWidget>
 #include"food.h"
+#include <QCloseEvent>
 
 class SnakeWidget : public QWidget
 {
@@ -20,6 +21,9 @@ public:
     bool EatFood();
     void start();
     void stop();
+    void closeEvent(QCloseEvent *event);
+signals:
+    void Backtomainscene();
 };
 
 #endif //

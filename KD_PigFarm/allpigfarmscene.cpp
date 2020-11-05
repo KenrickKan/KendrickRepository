@@ -325,7 +325,7 @@ allpigfarmscene::allpigfarmscene()
 
     ksearchselllog=new searchselllog;
 
-    QPushButton * sellbutton = new QPushButton;///////////show按钮
+    QPushButton * sellbutton = new QPushButton;///////////selllog按钮
     sellbutton->setStyleSheet("QPushButton{border:0px;}");
     QPixmap sellpix;
     sellpix.load(":/Image/selllogbutton.JPG");
@@ -344,7 +344,7 @@ allpigfarmscene::allpigfarmscene()
 
     ksearchbuylog=new searchbuylog;
 
-    QPushButton * buybutton = new QPushButton;///////////show按钮
+    QPushButton * buybutton = new QPushButton;///////////buylog按钮
     buybutton->setStyleSheet("QPushButton{border:0px;}");
     QPixmap buypix;
     buypix.load(":/Image/buylogbutton.JPG");

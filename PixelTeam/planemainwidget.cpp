@@ -29,3 +29,7 @@ planemainwidget::~planemainwidget()
 {
 
 }
+void planemainwidget::closeEvent(QCloseEvent *event)
+{
+    emit this->Backtomainscene();
+}

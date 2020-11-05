@@ -12,12 +12,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->snakeBtn->setFont(QFont("Ink Free", 12 , 1 ) );
     connect( ui->snakeBtn , &QPushButton::clicked , [=](){
         SnakeWidget * snake = new SnakeWidget;
+        connect(snake,&SnakeWidget::Backtomainscene,[=](){
+            snake->hide();
+            this->show();
+        });
         this->hide();
         snake->show();
     });
     ui->planebutton->setFont(QFont("Ink Free", 12 , 1 ));
     connect(ui->planebutton,&QPushButton::clicked,[=](){
         planemainwidget * plane = new planemainwidget;
+        connect(plane,&planemainwidget::Backtomainscene,[=](){
+            plane->hide();
+            this->show();
+        });
         this->hide();
         plane->show();
     });

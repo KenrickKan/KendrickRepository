@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "planegamewidget.h"
+#include <QCloseEvent>
 class planemainwidget : public QWidget
 {
     Q_OBJECT
@@ -13,6 +14,9 @@ public:
 private:
     planegamewidget *sonwidget;
     void paintEvent(QPaintEvent *ev);
+    void closeEvent(QCloseEvent *event);
+signals:
+    void Backtomainscene();
 };
 
 #endif // PLANEMAINWIDGET_H
