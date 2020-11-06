@@ -30,7 +30,7 @@ void MyPlane::init(int x,int y){
     });
     bullet->start(100);
 }
-void MyPlane::Goto(int flag){
+void MyPlane::Goto(int flag){//控制飞机移动
     if(flag==1){
         if(nowx>0)
             this->move(nowx-=20,nowy);

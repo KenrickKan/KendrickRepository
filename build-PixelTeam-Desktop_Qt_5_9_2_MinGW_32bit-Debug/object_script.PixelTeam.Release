@@ -12,6 +12,10 @@ INPUT(
 ./release\plane1.o
 ./release\plane2.o
 ./release\plane3.o
+./release\tetrisgamewidget.o
+./release\tetrismainwidget.o
+./release\blockcontrol.o
+./release\newblock.o
 ./release\qrc_res.o
 ./release\moc_mainwindow.o
 ./release\moc_snakewidget.o
@@ -22,4 +26,7 @@ INPUT(
 ./release\moc_plane1.o
 ./release\moc_plane2.o
 ./release\moc_plane3.o
+./release\moc_tetrismainwidget.o
+./release\moc_tetrisgamewidget.o
+./release\moc_newblock.o
 );

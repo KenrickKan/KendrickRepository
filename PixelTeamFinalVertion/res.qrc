@@ -17,5 +17,9 @@
         <file>img/start.JPG</file>
         <file>img/start.png</file>
         <file>img/background.png</file>
+        <file>img/Tetris.ico</file>
+        <file>img/kd.png</file>
+        <file>img/lgt.png</file>
+        <file>img/lmc.png</file>
     </qresource>
 </RCC>

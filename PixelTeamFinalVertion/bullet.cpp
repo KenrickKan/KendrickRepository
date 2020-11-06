@@ -2,7 +2,13 @@
 Bullet::Bullet(int x,int y,QWidget *parent) : QLabel(parent)
 {
     resize(13,13);
-    this->setPixmap(QPixmap(":/img/bullet1.png").scaled(13,13));
+    int temp=rand()%3;
+    if(temp==0)
+        this->setPixmap(QPixmap(":/img/kd.png").scaled(16,16));
+    else if(temp==1)
+        this->setPixmap(QPixmap(":/img/lgt.png").scaled(16,16));
+    else if(temp==2)
+        this->setPixmap(QPixmap(":/img/lmc.png").scaled(16,16));
     this->bulletx=x+28;
     this->bullety=y-18;
     this->move(bulletx,bullety);

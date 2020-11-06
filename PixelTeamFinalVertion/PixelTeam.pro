@@ -37,7 +37,11 @@ SOURCES += \
     bullet.cpp \
     plane1.cpp \
     plane2.cpp \
-    plane3.cpp
+    plane3.cpp \
+    tetrisgamewidget.cpp \
+    tetrismainwidget.cpp \
+    blockcontrol.cpp \
+    newblock.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -51,10 +55,15 @@ HEADERS += \
     bullet.h \
     plane1.h \
     plane2.h \
-    plane3.h
+    plane3.h \
+    tetrismainwidget.h \
+    tetrisgamewidget.h \
+    blockcontrol.h \
+    newblock.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    tetrismainwidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -63,3 +72,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     res.qrc
+UI_DIR=./UI

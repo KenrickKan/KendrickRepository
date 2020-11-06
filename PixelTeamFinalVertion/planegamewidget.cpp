@@ -16,10 +16,10 @@ planegamewidget::planegamewidget(QWidget *parent) : QWidget(parent)
     connect(plane1,&QTimer::timeout,[=](){
        static int id=0;
        Plane1 *temp=new Plane1(id++,this);
-       temp->setlist(myplane->list);
-       connect(myplane,SIGNAL(Move(int,int)),temp,SLOT(AcceptMyplane(int,int)));
-       connect(temp,&Plane1::GameOver,this,&planegamewidget::Gameover);
-       emit myplane->Move(myplane->nowx,myplane->nowy);
+       temp->setlist(myplane->list);//将自己的飞机所发出的子弹的链表传给plane1，用于判断是否能被击中
+       connect(myplane,SIGNAL(Move(int,int)),temp,SLOT(AcceptMyplane(int,int)));//当自己的飞机的move信号发送，plane1接受新的自己的飞机的坐标
+       connect(temp,&Plane1::GameOver,this,&planegamewidget::Gameover);//如果plane1被撞毁则整个游戏结束
+       emit myplane->Move(myplane->nowx,myplane->nowy);//每次计时器响应都判断自己的飞机的位置并发出信号
        temp->show();
     });
     plane1->start(500);

@@ -52,7 +52,7 @@ Plane1::Plane1(int id,QWidget *parent) : QLabel(parent)
     );
     timer->start(40);
 }
-void Plane1::AcceptMyplane(int x,int y){
+void Plane1::AcceptMyplane(int x,int y){//接受当前自己的飞机的坐标
     this->myplanex=x;
     this->myplaney=y;
 }

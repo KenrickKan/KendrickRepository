@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Pixel game</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>img/Tetris.ico</normaloff>img/Tetris.ico</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="snakeBtn">
@@ -38,6 +42,19 @@
     </property>
     <property name="text">
      <string>Plane</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Tetris">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>640</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Tetris</string>
     </property>
    </widget>
   </widget>
